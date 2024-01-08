@@ -4,13 +4,20 @@ const connect = require('./config/db')
 const port = process.env.PORT || 5757
 const morgan = require('morgan');
 const productRoute = require('./routes/productRoute')
+const userRoute = require('./routes/userRoute')
+const orderRoute = require('./routes/orderRoute')
+const cors = require('cors')
 
 
 // custom middleware
+app.use(cors())
+app.use(express.json())
 app.use(morgan('dev'))
 
 // Api's
 app.use('/api/products',productRoute)
+app.use('/api/user',userRoute)
+app.use('/api',orderRoute)
 
 
 // routes
